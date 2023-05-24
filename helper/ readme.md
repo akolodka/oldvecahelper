@@ -1,2 +1,2 @@
 # Группа надстроек «Помощник ПКР»
-![Image alt](resources/helper_ribbonMenu.jpg)
+![Image alt](VBA/resources/helper_ribbonMenu.jpg)

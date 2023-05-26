@@ -35,6 +35,27 @@
 ## Принцип работы
 
 
+## Установка и настройка
+Установка возможна только в ручном режиме: поместить в каталог автозагрузки Excel:
+``` 
+%appdata%\Microsoft\Excel\XLSTART\
+```
+После установки на Ribbon-ленте Excel повляется выпадающее меню для доступа к настройкам:
+
+![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_RibbonMenu.jpg)
+
+Пользовательская форма:
+
+![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_configMenu.jpg) ![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_configSaveChanges.jpg)
+
+Конфигурация пользователя хранится в файле:
+``` 
+%appdata%\Помощник ПКР\config\updater.ini
+```
+Содержимое файла конфигурации:
+
+![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_configContent.jpg)
+
 глобальные переменные
 параметры конфигурации
 параметры кеша

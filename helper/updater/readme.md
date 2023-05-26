@@ -63,7 +63,7 @@
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/update_available.jpg) ![Title](https://github.com/akolodka/VBA/blob/main/resources/update_unAvailable.jpg)
 
 ## Установка и настройка библиотеки
-Установка возможна только в ручном режиме: поместить в каталог автозагрузки Excel:
+Установка возможна только вручную: поместить в каталог автозагрузки Excel:
 ``` 
 %appdata%\Microsoft\Excel\XLSTART\
 ```

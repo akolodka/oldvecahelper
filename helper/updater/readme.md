@@ -84,5 +84,5 @@
 
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_configContent.jpg)
 
-## Доступ к исходному коду библиотек из VBA IDE 
+## Доступ к исходному коду библиотеки из VBA IDE 
 Проект библиотеки защищён паролем «1» ввиду обилия компонентов, по умолчанию отображающихся списком в IDE.

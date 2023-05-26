@@ -62,7 +62,7 @@
 
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/update_available.jpg) ![Title](https://github.com/akolodka/VBA/blob/main/resources/update_unAvailable.jpg)
 
-При работе в тихом автоматическом режиме, а также после установки уведомление отсутствует.
+ Уведомление отсутствует при работе в тихом автоматическом режиме, а также после установки.
 
 ## Установка и настройка библиотеки
 Установка возможна только в ручном режиме: поместить в каталог автозагрузки Excel:

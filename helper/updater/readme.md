@@ -74,7 +74,7 @@
 
 Пользовательская форма для работы с конфигурацией:
 
-![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_configDefault.jpg)![Title2](https://github.com/akolodka/VBA/blob/main/resources/updater_configSaveButton.jpg)
+![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_configDefault.jpg)![Title2](https://github.com/akolodka/VBA/blob/main/resources/updater_configBtnSave.jpg)
 
 Элементы управления на форме:
 - кнопка открыть каталог проверки обновлений (доступна при указании существующего пути);

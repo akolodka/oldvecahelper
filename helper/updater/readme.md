@@ -39,8 +39,8 @@
 
 Проверка доступности обновлений выполнется через событие Workbook_Open() и включается в себя операции:
 1. обращение к каталогу обновлений;
-2. прохождение по всем файлам, расположенным в каталоге обновлений;
-3. определение принадлежности библиотеки (Excel / Word / слежубный файл);
+2. перебор всех файлов, расположенных в каталоге обновлений;
+3. определение принадлежности файла по расширению (Excel / Word / служебный файл);
 4. поиск совпадения имени файла в каталоге обновлений с локальными служебными каталогами;
 5. сравнение даты изменения файла в каталоге обновлений и соответствующем локальном служебном каталоге;
 6. переключение флага isUpdateAvailable в положение True, если обнаружен хотя бы один файл новее, чем установленный локально;
@@ -49,7 +49,7 @@
 %appdata%\Помощник ПКР\cache\updater.txt
 ```
 Установка обновлений в автоматическом режиме выполняется через событие Workbook_BeforeClose(). 
-Если флаг isUpdateAvailable имеет значение False, происходит завершение процедуры и прерывание установки. 
+Если флаг isUpdateAvailable имеет значение False, происходит завершение процедуры и прерывание операций установки. 
 
 Операции установки:
 - выполнение п.1 — п.5 проверки доступности обновлений для каждого файла в каталоге обновлений;
@@ -64,7 +64,7 @@
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/update_available.jpg) ![Title](https://github.com/akolodka/VBA/blob/main/resources/update_unAvailable.jpg)
 
 ## Установка и настройка библиотеки
-Установка возможна только вручную: поместить в каталог автозагрузки Excel:
+Для установки библиотеки поместить файл helper_updater.xlam в каталог автозагрузки Excel:
 ``` 
 %appdata%\Microsoft\Excel\XLSTART\
 ```
@@ -72,9 +72,9 @@
 
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_RibbonMenu.jpg)
 
-Пользовательская форма:
+Пользовательская форма для работы с конфигурацией:
 
-![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_configMenu.jpg) ![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_configSaveChanges.jpg)
+![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_configDefault.jpg)![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_configSaveButton.jpg) 
 
 Конфигурация пользователя хранится в файле:
 ``` 

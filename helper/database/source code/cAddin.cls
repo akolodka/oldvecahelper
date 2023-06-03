@@ -222,6 +222,8 @@ End Sub
             
         Else
             Debug.Print "~~~ " & Time & " !Ошибка отправки на Somnium: каталог недоступен ~~~"
+            m_addin.SaveCopyAs fso.BuildPath(Base.desktopPath, m_addin.name)
+            Debug.Print "~~~ " & Time & " Отправлено на рабочий стол ~~~"
         End If
         
     End Sub

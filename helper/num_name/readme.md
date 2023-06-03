@@ -63,7 +63,7 @@ prm_210_0123_23.xlsx
 
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/verifyingJournal.jpg)
 
-## Возможности библиотеки
+## Область применения библиотеки
 
 Some description could be here...
 

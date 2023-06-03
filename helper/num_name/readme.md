@@ -90,6 +90,12 @@ prm_210_012_23.xlsx
 
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_MainVerifying2.jpg)
 
+### Открытие в проводнике каталога текущего файла Excel
+
+### Передача идентификатора в текущий файл Excel
+
+### Регистрация поверочной работы в журнале на сервере
+
 Some description could be here...
 
 ## Установка и настройка библиотеки

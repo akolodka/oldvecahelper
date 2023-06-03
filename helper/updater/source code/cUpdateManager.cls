@@ -32,7 +32,7 @@ Public Sub Check( _
     )
 
     Dim modulesUpdateAvailable As Collection
-    Set modulesUpdateAvailable = updateList(Config.pathUpdateFolder)
+    Set modulesUpdateAvailable = UpdateList(Config.pathUpdateFolder)
     ' ----------------------------------------------------------------
     Cache.isUpdateAvailable = modulesUpdateAvailable.count > vbEmpty
     Cache.modulesUpdateAvailable = StringFromColl(modulesUpdateAvailable)
@@ -44,7 +44,7 @@ End Sub
     ' ----------------------------------------------------------------
     ' ƒата: 30.05.2023 21:16
     ' ----------------------------------------------------------------
-    Private Function updateList( _
+    Private Function UpdateList( _
         path As String _
         ) As Collection
 
@@ -72,7 +72,7 @@ End Sub
             
         Next
         ' ----------------------------------------------------------------
-        Set updateList = listUpdateReady
+        Set UpdateList = listUpdateReady
         
     End Function
     ' ----------------------------------------------------------------
@@ -110,13 +110,13 @@ Public Sub Install( _
     If Not Cache.isUpdateAvailable Then _
         Exit Sub
     ' ----------------------------------------------------------------
-    Dim updateList() As String: updateList = Split(Cache.modulesUpdateAvailable, DELIMITER_PARSE)
+    Dim UpdateList() As String: UpdateList = Split(Cache.modulesUpdateAvailable, DELIMITER_PARSE)
     
     Dim i As Integer, md As cHelperVBProject
-    For i = LBound(updateList) To UBound(updateList)
+    For i = LBound(UpdateList) To UBound(UpdateList)
         
         Set md = New cHelperVBProject
-        md.Initialize Config.pathUpdateFolder, updateList(i)
+        md.Initialize Config.pathUpdateFolder, UpdateList(i)
         
         md.PrepareToInstall 'закрыть книгу Excel | документ Word перед установкой
         fso.CopyFile md.pathFileUpdate, md.pathFileInstalled
@@ -147,12 +147,9 @@ End Sub
             Dim md As Addin
             For Each md In Application.AddIns2
                 
-                If IsHelperAddin(md.name) Then 'проверка имени библиотеки по ключу
-                
-                    If md.name <> ThisWorkbook.name Then _
-                        Application.Workbooks(md.name).Close
+                If IsHelperAddin(md.name) Then _
+                    Application.Workbooks(md.name).Close
                         
-                End If
             Next
             
         End Sub
@@ -163,7 +160,10 @@ End Sub
                 addinName As String _
                 ) As Boolean
                 
-                IsHelperAddin = InStr(addinName, KEYWORD_ADDIN) = 1
+                IsHelperAddin = False
+                
+                If addinName <> ThisWorkbook.name Then _
+                    IsHelperAddin = InStr(addinName, KEYWORD_ADDIN) = 1
                 
             End Function
         Private Sub LoadExcelAddins()

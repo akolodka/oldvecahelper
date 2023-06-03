@@ -70,5 +70,5 @@ srt_2104_0123_23.docx
 
 Общий вид журнала регистрации поверочных работ:
 
-[Title](https://github.com/akolodka/VBA/blob/main/resources/verifyingJournal.jpg)
+![Title](https://github.com/akolodka/VBA/blob/main/resources/verifyingJournal.jpg)
 

@@ -124,8 +124,8 @@ Friend Function ProtocolFileMask( _
              checkedNum & DELIMITER_FILENAME & _
              cuttedSuffix
     
-    If Protocol.typeDoc = measurement Then _
-        result = result & SUFFIX_MEASUREMENT
+'    If Protocol.typeDoc = measurement Then _
+'        result = result & SUFFIX_MEASUREMENT
         
     ProtocolFileMask = result
     

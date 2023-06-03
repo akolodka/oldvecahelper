@@ -80,7 +80,7 @@ prm_210_012_23.xlsx
 
 - при запуске в файле измерительной работы:
 
-![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_MainMeasuring.jpg)
+![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_MainMeasuring2.jpg)
 
 - при запуске в файле калибровочной работы:
 

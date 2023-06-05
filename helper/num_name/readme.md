@@ -137,7 +137,19 @@ prm_210_012_23.xlsx
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_journalEntryExists2.jpg)
 
 ## Установка и настройка библиотеки
-Some description could be here...
+Для установки библиотеки поместить файл helper_updater.xlam в каталог автозагрузки Excel:
+``` 
+%appdata%\Microsoft\Excel\XLSTART\
+```
+После установки на Ribbon-ленте Excel повляется выпадающее меню для доступа к настройкам:
+
+![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_ribbonConfigMenu.jpg)
+
+Пользовательская форма для работы с конфигурацией:
+
+![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_ConfigMenu.jpg)
+
+Элементы управления на форме:
 
 ## Доступ к исходному коду библиотеки из VBA IDE 
 Проект библиотеки защищён паролем «1» ввиду обилия компонентов, по умолчанию отображающихся списком в IDE.

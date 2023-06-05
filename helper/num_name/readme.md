@@ -88,7 +88,7 @@ prm_210_012_23.xlsx
 
 - при запуске в файле поверочной работы:
 
-![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_MainVerifying2.jpg)
+![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_MainVerifying3.jpg)
 
 ------
 ### Открыть в проводнике каталог активного файла Excel

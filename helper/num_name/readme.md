@@ -145,9 +145,10 @@ prm_210_012_23.xlsx
 
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_ribbonConfigMenu.jpg)
 
-Пользовательская форма для работы с конфигурацией:
+При первом запуске с Ribbon ленты, а также в случае отсутствия файла конфигурации будет запущена форма настроек пользователя.
+Пользовательская форма для работы с конфигурацией (слева — после заполнения данных, справа — первый запуск по умолчанию):
 
-![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_ConfigMenu.jpg)
+![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_ConfigMenu.jpg) ![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_ConfigDefault.jpg)
 
 Элементы управления на форме:
 - поле ввода номера подразделения;

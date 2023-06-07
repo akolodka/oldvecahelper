@@ -50,6 +50,10 @@
 - найти, что передавать;
 - найти, куда передавать.
 
+Пользовательская форма, вызываемая по клику на кнопку с Ribbon-меню:
+
+![Title](https://github.com/akolodka/VBA/blob/main/resources/databaseOld_Main.jpg)
+
 
 
 Under construction

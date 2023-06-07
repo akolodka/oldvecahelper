@@ -71,10 +71,22 @@
   - выполнить поиск в рассматриваемой строке каждого элемента массива ключей;
   - если в результате совпало не менее половины от общего количества ключей, добавить элемент в результаты поиска.
 
-Таким образом, для конкретизации поискового запроса необходимо вводить сочетания символов через пробел:
-- нии мен петер;
-- спе сфтиуккф (cgt canberra).
+Пример: необходимо найти в базе сведения о спектрометре гамма-излучения Canberra. 
+Результат поиска при вводе запроса в виде одной группы символов (67 результатов):
 
+![Title](https://github.com/akolodka/VBA/blob/main/resources/databaseOld_searchOne.jpg)
+
+Результат поиска при вводе запроса в виде двух групп символов (38 результатов):
+
+![Title](https://github.com/akolodka/VBA/blob/main/resources/databaseOld_searchTwo.jpg)
+
+Результат поиска при вводе запроса в виде трёх групп символов (3 результата):
+
+![Title](https://github.com/akolodka/VBA/blob/main/resources/databaseOld_searchThree.jpg)
+
+Результат поиска при вводе запроса в виде четырёх групп символов (единственный результат):
+
+![Title](https://github.com/akolodka/VBA/blob/main/resources/databaseOld_searchFour.jpg)
 
 Under construction
 

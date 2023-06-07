@@ -110,14 +110,23 @@ End Sub
 '#########################################################
 'процедура заполняет массив кейкодов
 Sub FillArrKeycodeFromFile()
-    If FileExist(setDir, "keycode.npDb") Then 'если опознано наличие в каталоге надстройки файла кейкодов
- ' ------------------------------------------------------
-'todo: отвязать workclsm
+    
+    Const fileName As String = "keycode.npDb"
+     
+    Dim fso As New FileSystemObject, _
+        charTablePath As String
+        
+    charTablePath = fso.BuildPath(Config.sourceDataPath, fileName)
+    
+    If fso.FileExists(charTablePath) Then 'если опознано наличие в каталоге надстройки файла кейкодов
+        
         sArrKeyCode = WorkClsm.FillDataBase( _
-            myBase.GetArrFF(setDir, "keycode.npDb"))  'получить массив кейкодов(если файл обнаружен)
+            myBase.GetArrFF(charTablePath))  'получить массив кейкодов(если файл обнаружен)
+
     Else 'если файл не был обнаружен и загружен
         ReDim sArrKeyCode(0, 1)
     End If
+    
 End Sub
 '#########################################################
 'процедура заполняет массив базы данных

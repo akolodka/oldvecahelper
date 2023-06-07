@@ -1317,31 +1317,15 @@ End Sub
 'процедура заполняет массив кейкодов
 Private Sub FillArrKeycodeFromFile()
     
-    If FileExist(setDir, "keycode.npDb") Then 'если опознано наличие в каталоге надстройки файла кейкодов
-        ' ------------------------------------------------------
-
-        sArrKeyCode = WorkClsm.FillDataBase( _
-            myBase.GetArrFF(setDir, "keycode.npDb"))  'получить массив кейкодов(если файл обнаружен)
-' ------------------------------------------------------
-        Exit Sub 'todo: рефактор кейкодов
-' ------------------------------------------------------
-        Dim fS As String, i As Integer
-        For i = LBound(sArrKeyCode, 2) To 32
-
-            fS = fS & sArrKeyCode(0, i)
-
-        Next
-
-        fS = fS & vbNewLine
-
-        For i = LBound(sArrKeyCode, 2) To 32
-
-            fS = fS & sArrKeyCode(1, i)
-
-        Next
+    Const fileName As String = "keycode.npDb"
+     
+    Dim charTablePath As String
+    charTablePath = fso.BuildPath(Config.sourceDataPath, fileName)
+    
+    If fso.FileExists(charTablePath) Then 'если опознано наличие в каталоге надстройки файла кейкодов
         
-        fS = Replace(fS, "{", "[")
-        Base.WriteContent fso.BuildPath(Config.sourceDataPath, "chartable.pkr"), fS
+        sArrKeyCode = WorkClsm.FillDataBase( _
+            myBase.GetArrFF(charTablePath))  'получить массив кейкодов(если файл обнаружен)
 
     Else 'если файл не был обнаружен и загружен
         ReDim sArrKeyCode(0, 1)

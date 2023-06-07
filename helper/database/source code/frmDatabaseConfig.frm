@@ -30,7 +30,7 @@ Const READY_FONTSIZE = 12
 Private fso As New FileSystemObject, _
         isSaved As Boolean, _
         status As Boolean
-        
+
 Private Sub UserForm_Initialize()
     
     SetEventControls Me
@@ -530,3 +530,8 @@ End Sub
             btnName.BackColor = Colors.white
             
         End Sub
+
+        
+Private Sub btnOldConfig_Click()
+    Z_UF_Settings.Show False
+End Sub

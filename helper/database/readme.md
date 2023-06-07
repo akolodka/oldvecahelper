@@ -148,11 +148,11 @@
 
 Для одного типа средства измерений возможны несколько модификаций, которые отличаются набором операций поверки. Это привело к созданию множества файлов «body» в рамках одного каталога данных:
 
-![Title] (https://github.com/akolodka/VBA/blob/main/resources/pr_list.jpg)
+![Title](https://github.com/akolodka/VBA/blob/main/resources/pr_list.jpg)
 
 Для выбора конкретного тела шаблона предусмотрена дополнительная форма, вызываемая при поиске в базе средств измерений:
 
-![Title] (https://github.com/akolodka/VBA/blob/main/resources/body_select.jpg)
+![Title](https://github.com/akolodka/VBA/blob/main/resources/body_select.jpg)
 
 Under construction
 

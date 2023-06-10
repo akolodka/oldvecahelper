@@ -43,9 +43,9 @@ End Sub
 'переустановить программу
 Private Sub cmbUninstall_Click()
 
-    Dim sFileName As String
-    sFileName = WorkClsm.startDir & "Installer\Uninstall.vbs": If FileExist(sFileName) Then Shell "explorer.exe " & sFileName
-    VBA.Unload Me
+'    Dim sFileName As String
+'    sFileName = WorkClsm.startDir & "Installer\Uninstall.vbs": If FileExist(sFileName) Then Shell "explorer.exe " & sFileName
+'    VBA.Unload Me
 End Sub
 '#######################################################
 'изменение вкладки настроек
@@ -62,10 +62,10 @@ Private Sub UserForm_Initialize()
     
     TransformConfigFile 'для перехода от старого обновления к новому
     
-    If FileExist(setDir, Environ("USERNAME") & ".uCfg") Then
-        Me.cmbCfgExp.Enabled = True: Me.cmbCfgImp.BackColor = &HFFFFFF    'белый
-    End If
-    
+'    If FileExist(setDir, Environ("USERNAME") & ".uCfg") Then
+'        Me.cmbCfgExp.Enabled = True: Me.cmbCfgImp.BackColor = &HFFFFFF    'белый
+'    End If
+'
     With myBase 'работа с классом настроек
         '#######################################################
         .GetArrFF setDir, Environ("USERNAME") & ".uCfg" 'загрузить в класс файл локальной конфигурации
@@ -85,21 +85,21 @@ Private Sub UserForm_Initialize()
         
         .FillValues 'обязательно: найти значения выходных параметров по ключам
     End With
-              
+             
     WorkClsm.FillProperties myBase.Parameters, myBase.values 'передать извлечённые из настроек параметры в специальный класс
-    UpdateDBLabels  'обновить метки выбранных файлов согласно загруженным данным
     
-'    With WorkClsm
-'        If .empState = "недоступно" Then _
-'            Me.cmbxEmployee = "<выбрать>": PreSaveSettings 'для обратной совместимости
-'
-'        If .headSTATE = "недоступно" Then _
-'            Me.cmbxHead = "<выбрать>": PreSaveSettings 'для обратной совместимости
-'    End With
-    
-  '  Me.VersionLabel.Caption = "v " & GetCDProp("Version") & " от " & _
-        Format(GetCDProp("VersionDate"), "[$-FC19]dd mmmm yyyy г.") & vbNewLine & "kolaa@vniim.ru; т/н 21-09"
+    If WorkClsm.startDir = Base.defaultValuePrinted Then _
+        FindPrimaryDataFiles Config.sourceDataPath
         
+    If WorkClsm.templatesDir = Base.defaultValuePrinted Then _
+        WorkClsm.templatesDir = Config.instrumentsPath
+        
+    If WorkClsm.workDir = Base.defaultValuePrinted Then _
+        WorkClsm.workDir = Config.sandboxPath
+        
+    UpdateDBLabels  'обновить метки выбранных файлов согласно загруженным данным
+     
+                
     Me.VersionLabel.caption = Addin.VersionCaption
     
     SetEventControls Me
@@ -172,10 +172,10 @@ Sub UpdateEmployees(bolFormIsLoad As Boolean)
                 
                 sHeadName = .headNAME: sVerName = .verNAME: sempSecName = .empSecName: sEmpName = .empName 'получить данные из класса
                 
-                If sHeadName = "" Then .headNAME = "недоступно": sHeadName = "недоступно"
-                If sVerName = "" Then .verNAME = "недоступно": sVerName = "недоступно"
-                If sempSecName = "" Then .empSecName = "недоступно": sempSecName = "недоступно"
-                If sEmpName = "" Then .empName = "недоступно": sEmpName = "недоступно"
+                If sHeadName = "" Then .headNAME = Base.defaultValuePrinted: sHeadName = Base.defaultValuePrinted
+                If sVerName = "" Then .verNAME = Base.defaultValuePrinted: sVerName = Base.defaultValuePrinted
+                If sempSecName = "" Then .empSecName = Base.defaultValuePrinted: sempSecName = Base.defaultValuePrinted
+                If sEmpName = "" Then .empName = Base.defaultValuePrinted: sEmpName = Base.defaultValuePrinted
 
                 If InStr(sHeadName, " ") > 0 Then sHeadName = Left(sHeadName, InStr(sHeadName, " ")) 'получить чистую фамилию
                 If InStr(sVerName, " ") > 0 Then sVerName = Left(sVerName, InStr(sVerName, " "))
@@ -218,25 +218,25 @@ Sub UpdateEmployees(bolFormIsLoad As Boolean)
                 Next i
                 
                 With Me.cmbxHead
-                   If .text = "недоступно" Or .text = "" Then .text = "<выбрать>"
+                   If .text = Base.defaultValuePrinted Or .text = "" Then .text = "<выбрать>"
                 End With
                 
                 With Me.cmbxVerifier
-                   If .text = "недоступно" Or .text = "" Then .text = "<выбрать>"
+                   If .text = Base.defaultValuePrinted Or .text = "" Then .text = "<выбрать>"
                 End With
                 
                 With Me.cmbxEmpSecond
-                   If .text = "недоступно" Or .text = "" Then .text = "<выбрать>"
+                   If .text = Base.defaultValuePrinted Or .text = "" Then .text = "<выбрать>"
                 End With
                 
                 With Me.cmbxEmployee
-                   If .text = "недоступно" Or .text = "" Then .text = "<выбрать>"
+                   If .text = Base.defaultValuePrinted Or .text = "" Then .text = "<выбрать>"
                 End With
                 
                 Exit Sub
             End If
         End If
-        .empName = "недоступно": .headNAME = "недоступно": .verNAME = "недоступно": .empSecName = "недоступно"
+        .empName = Base.defaultValuePrinted: .headNAME = Base.defaultValuePrinted: .verNAME = Base.defaultValuePrinted: .empSecName = Base.defaultValuePrinted
     End With
 End Sub
 '#######################################################
@@ -286,7 +286,7 @@ End Sub
 Private Sub chbUseArchiveDir_Change()
     TrueElementForeColor Me.chbUseArchiveDir, Not Me.chbUseArchiveDir, 1: If bolUF_Set_Load = False Then Exit Sub
     
-    WorkClsm.ArchivePath = "недоступно" 'передать папаметр в рабочий класс
+    WorkClsm.ArchivePath = Base.defaultValuePrinted 'передать папаметр в рабочий класс
     WorkClsm.useArchiveDir = False
     
     If Me.chbUseArchiveDir Then
@@ -315,7 +315,7 @@ Sub UpdateDBLabels()
     
     With WorkClsm
         sMyDir = .startDir 'начальная директория файлов, где хранятся базы данных
-        If sMyDir <> "недоступно" Then  'если директория была выбрана
+        If sMyDir <> Base.defaultValuePrinted Then  'если директория была выбрана
         
             With Me.baseDirLabel
                 PaintLabels Me.baseDirLabel.name, sMyDir
@@ -324,16 +324,16 @@ Sub UpdateDBLabels()
                     Me.cmbOpenFolder.Enabled = True
                     Me.cmbChoseBaseDir.BackColor = &HFFFFFF 'white color
                 
-                    Me.cmbCreateCus1.Enabled = True: Me.cmbChoseCus2.Enabled = True
+                 '   Me.cmbCreateCus1.Enabled = True: Me.cmbChoseCus2.Enabled = True
                     Me.cmbCreateMi3.Enabled = True: Me.cmbChoseMi4.Enabled = True
-                    Me.cmbCreateEt5.Enabled = True: Me.cmbChoseEt6.Enabled = True
-                    Me.cmbCreateLn7.Enabled = True: Me.cmbChoseLn8.Enabled = True
+                 '   Me.cmbCreateEt5.Enabled = True: Me.cmbChoseEt6.Enabled = True
+                 '   Me.cmbCreateLn7.Enabled = True: Me.cmbChoseLn8.Enabled = True
                 End If
                 
-                PaintLabels Me.CusLabel.name, sMyDir, WorkClsm.cusDB
+            '    PaintLabels Me.CusLabel.name, sMyDir, WorkClsm.cusDB
                 PaintLabels Me.InstrLabel.name, sMyDir, WorkClsm.measInstrDB
-                PaintLabels Me.EtalLabel.name, sMyDir, WorkClsm.etalDB
-                PaintLabels Me.empLabel.name, sMyDir, WorkClsm.empDB
+             '   PaintLabels Me.EtalLabel.name, sMyDir, WorkClsm.etalDB
+            '    PaintLabels Me.empLabel.name, sMyDir, WorkClsm.empDB
             End With
             
         End If
@@ -341,7 +341,7 @@ Sub UpdateDBLabels()
         
         sMyDir = .workDir 'каталог, в который копируются шаблоны с сервера
         
-        If sMyDir = "недоступно" Then _
+        If sMyDir = Base.defaultValuePrinted Then _
             .workDir = "C:\Users\" & Environ("USERNAME") & "\Desktop\": sMyDir = .workDir
 
         With Me.labelWorkDir
@@ -370,30 +370,30 @@ Sub UpdateDBLabels()
             
         End With
 
-        If .depPrefix <> "недоступно" Then Me.tboxDepPrefix = .depPrefix
-        If .labNum <> "недоступно" Then Me.tBoxLabNum = .labNum
+        If .depPrefix <> Base.defaultValuePrinted Then Me.tboxDepPrefix = .depPrefix
+        If .labNum <> Base.defaultValuePrinted Then Me.tBoxLabNum = .labNum
         
         If bolUF_Set_Load Then
             bolUF_Set_Load = False
             
-            If .useArchiveDir <> "недоступно" Then _
+            If .useArchiveDir <> Base.defaultValuePrinted Then _
                 If Dir(.ArchivePath, vbDirectory) <> "" Then Me.chbUseArchiveDir = .useArchiveDir
             bolUF_Set_Load = True
         Else
-            If .useArchiveDir <> "недоступно" Then _
+            If .useArchiveDir <> Base.defaultValuePrinted Then _
                 If Dir(.ArchivePath, vbDirectory) <> "" Then Me.chbUseArchiveDir = .useArchiveDir
         End If
             
-        If .isPortable = "недоступно" Then .isPortable = "False"
+        If .isPortable = Base.defaultValuePrinted Then .isPortable = "False"
        ' Me.chbPortable = .isPortable
         
-        If .helpOption = "недоступно" Then .helpOption = "True"
+        If .helpOption = Base.defaultValuePrinted Then .helpOption = "True"
        ' Me.chbHelp = .helpOption
         
         UpdateEmployees (bolUF_Set_Load) 'обновить содержимое комбобокса исполнителя
         
 'третья страница настроек
-        If .xlPrPath = "недоступно" Then .xlPrPath = sMyDir
+        If .xlPrPath = Base.defaultValuePrinted Then .xlPrPath = sMyDir
         PaintLabels Me.labelPrDir.name, .xlPrPath
         
         If FolderNotExist(.xlPrPath) = False Then  'если указанный каталог доступен
@@ -402,7 +402,7 @@ Sub UpdateDBLabels()
             Me.cmbOpenPrDir.Enabled = True
         End If
 
-        If .xlPrcPath = "недоступно" Then .xlPrcPath = sMyDir
+        If .xlPrcPath = Base.defaultValuePrinted Then .xlPrcPath = sMyDir
         PaintLabels Me.labelPrcDir.name, .xlPrcPath
         
         If FolderNotExist(.xlPrcPath) = False Then  'если указанный каталог доступен
@@ -411,7 +411,7 @@ Sub UpdateDBLabels()
             Me.cmbOpenPrcDir.Enabled = True
         End If
         
-        If .wdSvPath = "недоступно" Then .wdSvPath = sMyDir
+        If .wdSvPath = Base.defaultValuePrinted Then .wdSvPath = sMyDir
         PaintLabels Me.labelSvDir.name, .wdSvPath
             
         If FolderNotExist(.wdSvPath) = False Then  'если указанный каталог доступен
@@ -420,7 +420,7 @@ Sub UpdateDBLabels()
             Me.cmbOpenSvDir.Enabled = True
         End If
         
-        If .wdSrtPath = "недоступно" Then .wdSrtPath = sMyDir
+        If .wdSrtPath = Base.defaultValuePrinted Then .wdSrtPath = sMyDir
         PaintLabels Me.labelSrtDir.name, .wdSrtPath
             
         If FolderNotExist(.wdSrtPath) = False Then  'если указанный каталог доступен
@@ -429,7 +429,7 @@ Sub UpdateDBLabels()
             Me.cmbOpenSrtDir.Enabled = True
         End If
         
-        If .wdInPath = "недоступно" Then .wdInPath = sMyDir
+        If .wdInPath = Base.defaultValuePrinted Then .wdInPath = sMyDir
         PaintLabels Me.labelInDir.name, .wdInPath
             
         If FolderNotExist(.wdInPath) = False Then  'если указанный каталог доступен
@@ -497,49 +497,63 @@ End Sub
 '#######################################################
 'процедура позволяет выбрать начальный каталог
 Private Sub cmbChoseBaseDir_Click()
-    Dim sMyPath As String, sTempName As String
+
+    Dim sMyPath As String
     sMyPath = GetFolderFPath(, , True) 'выбрать путь к каталогу
     
-    If sMyPath <> "NoPath" Then
-        sMyPath = sMyPath & "\"
-        WorkClsm.startDir = sMyPath 'передать папаметр в рабочий класс
+    FindPrimaryDataFiles sMyPath
+    
+End Sub
+
+    Private Sub FindPrimaryDataFiles( _
+        path As String _
+        )
         
-        WorkClsm.cusDB = "недоступно"
-        sTempName = Dir(sMyPath & "\*.cuDb") 'поиск базы данных заказчиков
-        If sTempName <> "" Then
-            WorkClsm.cusDB = sTempName
-            sTempName = Dir
-            If sTempName <> "" Then WorkClsm.cusDB = "недоступно"
-        End If
+        If path = "NoPath" Then _
+            Exit Sub
         
-        WorkClsm.measInstrDB = "недоступно"
-        sTempName = Dir(sMyPath & "\*.miDb") 'поиск базы данных заказчиков
+        Dim sTempName As String
+        
+        
+        path = path & "\"
+        WorkClsm.startDir = path 'передать папаметр в рабочий класс
+        
+'        WorkClsm.cusDB = Base.defaultValuePrinted
+'        sTempName = Dir(path & "\*.cuDb") 'поиск базы данных заказчиков
+'        If sTempName <> "" Then
+'            WorkClsm.cusDB = sTempName
+'            sTempName = Dir
+'            If sTempName <> "" Then WorkClsm.cusDB = Base.defaultValuePrinted
+'        End If
+        
+        WorkClsm.measInstrDB = Base.defaultValuePrinted
+        sTempName = Dir(path & "\*.miDb") 'поиск базы данных заказчиков
         If sTempName <> "" Then
             WorkClsm.measInstrDB = sTempName
             sTempName = Dir
-            If sTempName <> "" Then WorkClsm.measInstrDB = "недоступно"
+            If sTempName <> "" Then WorkClsm.measInstrDB = Base.defaultValuePrinted
         End If
         
-        WorkClsm.etalDB = "недоступно"
-        sTempName = Dir(sMyPath & "\*.etDb") 'поиск базы данных заказчиков
-        If sTempName <> "" Then
-            WorkClsm.etalDB = sTempName
-            sTempName = Dir
-            If sTempName <> "" Then WorkClsm.etalDB = "недоступно"
-        End If
-        
-        WorkClsm.empDB = "недоступно"
-        sTempName = Dir(sMyPath & "\*.nmDb") 'поиск базы данных заказчиков
-        If sTempName <> "" Then
-            WorkClsm.empDB = sTempName
-            sTempName = Dir
-            If sTempName <> "" Then WorkClsm.empDB = "недоступно"
-        End If
+'        WorkClsm.etalDB = Base.defaultValuePrinted
+'        sTempName = Dir(path & "\*.etDb") 'поиск базы данных заказчиков
+'        If sTempName <> "" Then
+'            WorkClsm.etalDB = sTempName
+'            sTempName = Dir
+'            If sTempName <> "" Then WorkClsm.etalDB = Base.defaultValuePrinted
+'        End If
+'
+'        WorkClsm.empDB = Base.defaultValuePrinted
+'        sTempName = Dir(path & "\*.nmDb") 'поиск базы данных заказчиков
+'        If sTempName <> "" Then
+'            WorkClsm.empDB = sTempName
+'            sTempName = Dir
+'            If sTempName <> "" Then WorkClsm.empDB = Base.defaultValuePrinted
+'        End If
         
         UpdateDBLabels
         PreSaveSettings 'изменить заголовок кнопки Готово / Сохранить
-    End If
-End Sub
+           
+    End Sub
 '#######################################################
 'процедура позволяет выбрать или создать чистый файл базы данных
 Sub ChooseFile(controlName As String, Optional CreateNew As Boolean)
@@ -622,7 +636,7 @@ Private Sub cmbxHead_Change()
         If bolUF_Set_Load = False Then Exit Sub
         
         If .text = "<выбрать>" Then _
-            WorkClsm.headNAME = "недоступно": .BackColor = &HC0FFFF 'желтый
+            WorkClsm.headNAME = Base.defaultValuePrinted: .BackColor = &HC0FFFF 'желтый
         
         If .text <> "<выбрать>" Then
             WorkClsm.headNAME = .text
@@ -655,7 +669,7 @@ Private Sub cmbxVerifier_Change()
         If bolUF_Set_Load = False Then Exit Sub
         
         If .text = "<выбрать>" Then _
-            WorkClsm.verNAME = "недоступно": .BackColor = &HC0FFFF 'желтый
+            WorkClsm.verNAME = Base.defaultValuePrinted: .BackColor = &HC0FFFF 'желтый
         
         If .text <> "<выбрать>" Then WorkClsm.verNAME = .text
     End With
@@ -680,7 +694,7 @@ Private Sub cmbxEmployee_Change()
         If bolUF_Set_Load = False Then Exit Sub
         
         If .text = "<выбрать>" Then _
-            WorkClsm.empName = "недоступно": .BackColor = &HC0FFFF 'желтый
+            WorkClsm.empName = Base.defaultValuePrinted: .BackColor = &HC0FFFF 'желтый
         
         If .text <> "<выбрать>" Then
             WorkClsm.empName = .text
@@ -713,7 +727,7 @@ Private Sub cmbxEmpSecond_change()
         If bolUF_Set_Load = False Then Exit Sub
         
         If .text = "<выбрать>" Then _
-            WorkClsm.empSecName = "недоступно": .BackColor = &HC0FFFF 'желтый
+            WorkClsm.empSecName = Base.defaultValuePrinted: .BackColor = &HC0FFFF 'желтый
         
         If .text <> "<выбрать>" Then
             WorkClsm.empSecName = .text
@@ -762,9 +776,9 @@ Private Sub cmbChoosePrDir_Click( _
     sTempPath = WorkClsm.xlPrPath
     
     If FolderNotExist(sTempPath) Then _
-        sTempPath = "недоступно"
+        sTempPath = Base.defaultValuePrinted
     
-    If sTempPath <> "недоступно" Then _
+    If sTempPath <> Base.defaultValuePrinted Then _
         sTempPath = Left(sTempPath, Len(sTempPath) - InStr(2, StrReverse(sTempPath), "\") + 1) 'подняться на каталог выше
         
     sMyPath = GetFolderFPath(, sTempPath)  'выбрать путь к каталогу
@@ -792,9 +806,9 @@ Private Sub cmbChoosePrcDir_Click( _
     sTempPath = WorkClsm.xlPrcPath
     
     If FolderNotExist(sTempPath) Then _
-        sTempPath = "недоступно"
+        sTempPath = Base.defaultValuePrinted
     
-    If sTempPath <> "недоступно" Then _
+    If sTempPath <> Base.defaultValuePrinted Then _
         sTempPath = Left(sTempPath, Len(sTempPath) - InStr(2, StrReverse(sTempPath), "\") + 1) 'подняться на каталог выше
         
     sMyPath = GetFolderFPath(, sTempPath)  'выбрать путь к каталогу
@@ -822,9 +836,9 @@ Private Sub cmbChooseSvDir_Click( _
     sTempPath = WorkClsm.wdSvPath
     
     If FolderNotExist(sTempPath) Then _
-        sTempPath = "недоступно"
+        sTempPath = Base.defaultValuePrinted
     
-    If sTempPath <> "недоступно" Then _
+    If sTempPath <> Base.defaultValuePrinted Then _
         sTempPath = Left(sTempPath, Len(sTempPath) - InStr(2, StrReverse(sTempPath), "\") + 1) 'подняться на каталог выше
         
     sMyPath = GetFolderFPath(, sTempPath)  'выбрать путь к каталогу
@@ -846,9 +860,9 @@ Private Sub cmbChooseSrtDir_Click()
     
     sTempPath = WorkClsm.wdSrtPath
     If FolderNotExist(sTempPath) Then _
-        sTempPath = "недоступно"
+        sTempPath = Base.defaultValuePrinted
     
-    If sTempPath <> "недоступно" Then _
+    If sTempPath <> Base.defaultValuePrinted Then _
         sTempPath = Left(sTempPath, Len(sTempPath) - InStr(2, StrReverse(sTempPath), "\") + 1) 'подняться на каталог выше
         
     sMyPath = GetFolderFPath(, sTempPath)  'выбрать путь к каталогу
@@ -871,9 +885,9 @@ Private Sub cmbChooseInDir_Click()
     sTempPath = WorkClsm.wdInPath
     
     If FolderNotExist(sTempPath) Then _
-        sTempPath = "недоступно"
+        sTempPath = Base.defaultValuePrinted
     
-    If sTempPath <> "недоступно" Then _
+    If sTempPath <> Base.defaultValuePrinted Then _
         sTempPath = Left(sTempPath, Len(sTempPath) - InStr(2, StrReverse(sTempPath), "\") + 1) 'подняться на каталог выше
         
     sMyPath = GetFolderFPath(, sTempPath)  'выбрать путь к каталогу

@@ -236,10 +236,6 @@
 По умолчанию передача данных контрагента выполняется по нажатию на Enter. 
 
 
-
-
-
-
 ## Установка и настройка библиотеки
 Для установки библиотеки поместить файл helper_database.xlam в каталог автозагрузки Excel:
 ``` 
@@ -258,7 +254,7 @@
 
 Ввиду совщемения старой и новой архитектуры форма настроек содержит ссылку на старую форму настроек (слева от кнопки Somnium):
 
-![Title](https://github.com/akolodka/VBA/blob/main/resources/database_ConfigOld.jpg)
+![Title](https://github.com/akolodka/VBA/blob/main/resources/database_ConfigOld2.jpg)
 
 
 ## Доступ к исходному коду из VBA IDE 

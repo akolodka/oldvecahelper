@@ -245,7 +245,7 @@
 
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/database_RibbonMenu.jpg)
 
-При первом запуске с Ribbon ленты, а также в случае отсутствия файла конфигурации будет запущена форма настроек пользователя.
+При первом запуске с Ribbon ленты, а также в случае отсутствия файла конфигурации, будет запущена форма настроек пользователя.
 Пользовательская форма для работы с конфигурацией:
 
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/database_ConfigMenu.jpg) 

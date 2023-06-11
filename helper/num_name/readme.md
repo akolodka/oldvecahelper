@@ -137,7 +137,9 @@ prm_210_012_23.xlsx
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/numName_journalEntryExists2.jpg)
 
 ## Установка и настройка библиотеки
-Для установки библиотеки поместить файл helper_updater.xlam в каталог автозагрузки Excel:
+Использовать ![менеджер установки ПКР](https://github.com/akolodka/.NET-InstallerPKR).
+
+Либо вручную поместить файл helper_updater.xlam в каталог автозагрузки Excel:
 ``` 
 %appdata%\Microsoft\Excel\XLSTART\
 ```

@@ -237,7 +237,9 @@
 
 
 ## Установка и настройка библиотеки
-Для установки библиотеки поместить файл helper_database.xlam в каталог автозагрузки Excel:
+Использовать ![менеджер установки ПКР](https://github.com/akolodka/.NET-InstallerPKR).
+
+Либо вручную поместить файл helper_updater.xlam в каталог автозагрузки Excel:
 ``` 
 %appdata%\Microsoft\Excel\XLSTART\
 ```

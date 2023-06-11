@@ -69,10 +69,13 @@
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/update_available.jpg) ![Title](https://github.com/akolodka/VBA/blob/main/resources/update_unAvailable.jpg)
 
 ## Установка и настройка библиотеки
-Для установки библиотеки поместить файл helper_updater.xlam в каталог автозагрузки Excel:
+Использовать ![менеджер установки ПКР](https://github.com/akolodka/.NET-InstallerPKR).
+
+Либо вручную поместить файл helper_updater.xlam в каталог автозагрузки Excel:
 ``` 
 %appdata%\Microsoft\Excel\XLSTART\
 ```
+
 После установки на Ribbon-ленте Excel повляется выпадающее меню для доступа к настройкам:
 
 ![Title](https://github.com/akolodka/VBA/blob/main/resources/updater_RibbonMenu.jpg)

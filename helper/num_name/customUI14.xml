@@ -1,0 +1,59 @@
+<?xml version="1.0" standalone="yes"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui"
+		  xmlns:kolodka="kolodka_namespace">
+		  
+	<ribbon startFromScratch="false">
+		<tabs>
+		
+			<tab idQ="kolodka:helper"
+				 keytip="ё"
+				 label="Помощник ПКР">
+				 
+				<!-- 				insertAfterMso="TabHome"> -->
+				<group idQ="kolodka:config">
+				
+					<menu idQ="kolodka:config_menu"
+						  imageMso="AddInManager"
+						  size="large"
+						  itemSize="large"
+						  label="Настройки"
+						  keytip="Ы">
+												
+						<button id="btnNumNameType_Config"
+								label="Номер, имя файла"
+								description="Префиксы для поверки и калибровки, журнал работ, исполнители"
+								image="ConfigNumNema" 
+								onAction="Ribbon_NumName_Config"/>
+					</menu>
+				</group>
+				<group idQ="kolodka:four_steps"
+					   label="Документ ПКР">
+
+					<button id="btnNumNameType"
+							image="A3_Номер_в_рамке_50x50"
+							description="Переименовать, конвертировать, удалить частные функции с листа"
+							label="Номер, имя файла"
+							keytip="3"
+							size="large"
+							onAction="Ribbon_NumName"/>
+							
+				</group>
+				<group idQ="kolodka:other"
+					   label="Дополнительно">
+					   <!-- 						
+						<separator id="separator1"/>     
+								 -->
+								
+						<button id="buttonRenamePDF"
+								size="normal"
+								image="pdf-48"
+								description="Переименовать PDF-файл согласно свойствам книги"
+								label="Rename"
+								onAction="ribbon_RenamePDF"/>	
+							
+
+				</group>
+			</tab>
+		</tabs>
+	</ribbon>
+</customUI>

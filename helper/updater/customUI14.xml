@@ -1,0 +1,44 @@
+<?xml version="1.0" standalone="yes"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui"
+		  xmlns:kolodka="kolodka_namespace"
+		  onLoad="UpdateRibbon">
+		  
+	<ribbon startFromScratch="false">
+		<tabs>
+		
+			<tab idQ="kolodka:helper"
+				 keytip="ё"
+				 label="Помощник ПКР">
+				 
+				<group idQ="kolodka:config"
+					   label="Пользователь">
+					   
+					<menu idQ="kolodka:config_menu"
+						  imageMso ="AddInManager"
+						  size="large"
+						  label="Настройки"
+						  itemSize="large">
+					
+						<menuSeparator id="separatorBefore" />
+					
+						<button id="autoUpdateConfig"
+								image="icons8-sync-settings-48"
+								label="Обновление модулей"
+								description="каталог и параметры обновления модулей"
+								onAction="ribbon_UpdateMenu"/>
+								
+						<menuSeparator id="separatorAfter" />
+
+					</menu>
+					
+					<button id="btnUpdate"
+							label="Обновление программы"
+							getVisible ="btnUpdateVisible"
+							image="icons8-update-48"
+							onAction ="ribbon_GetUpdate"
+							size="large"/>
+				</group>
+			</tab>
+		</tabs>
+	</ribbon>
+</customUI>

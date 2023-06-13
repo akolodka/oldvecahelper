@@ -1,0 +1,80 @@
+<?xml version="1.0" standalone="yes"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui"
+		  xmlns:kolodka="kolodka_namespace">
+		  
+	<ribbon startFromScratch="false">
+		<tabs>
+		
+			<tab idQ="kolodka:helper"
+				 keytip="ё"
+				 label="Помощник ПКР">
+				 
+				<!-- 				insertAfterMso="TabHome"> -->
+				<group idQ="kolodka:config">
+				
+					<menu idQ="kolodka:config_menu"
+						  imageMso="AddInManager"
+						  size="large"
+						  itemSize="large"
+						  label="Настройки"
+						  keytip="Ы">
+						  
+						<button id="btnDatabaseConfig"
+								image="Db_orig_2_50x50."
+								label="Источники данных"
+								description="Настройки для работы с базами данных"
+								onAction="ribbon_DatabaseConfig"/>
+												
+					</menu>
+				</group>
+				<group idQ="kolodka:four_steps"
+					   label="Документ ПКР">
+					   
+						<button id="btnInstruments"
+								size="large"
+								keytip="1"
+								image="A6_СИ_50x50"
+								supertip="Сведения согласно реестру ФИФ"
+								label="Средства измерений"
+								onAction="ribbon_Instruments"/>
+								
+						<button id="btnCustomers"
+								size="large"
+								keytip="2"
+								image="A5_Заказчики_нов_50x50"
+								supertip="Наименование, ИНН, юридический адрес"
+								label="Контрагенты ВНИИМ"
+								onAction="ribbon_Customers"/>
+
+				</group>
+				<group idQ="kolodka:other"
+					   label="Дополнительно">
+					   
+						<button id="btnArchive"
+								image="A9_архив_50x50"
+								keytip="Ё"
+								size="large"
+								supertip="Перейти в архив поверочных             и калибровочных работ"
+								label="Архив работ"
+								onAction="ribbon_Archive"/>
+								
+								
+						<separator id="separator1"/>     
+								
+						<button id="btnEtalons"
+								image="A7_Новое_лого_ВНИИМ_50x50"
+								label="Эталоны"
+								description="И вспомогательное оборудование"
+								onAction="ribbon_Etalons"/>
+								
+						<button id="btnNames"
+								image="A8_сотрудники_50x50"
+								supertip="Быстрая вставка сведений сотрудников"
+								label="Контакты"
+								onAction="ribbon_Names"/>
+								
+				</group>
+			</tab>
+		</tabs>
+	</ribbon>
+</customUI>

@@ -1,0 +1,46 @@
+<?xml version="1.0" standalone="yes"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui"
+		  xmlns:kolodka="kolodka_namespace">
+		  
+	<ribbon startFromScratch="false">
+		<tabs>
+		
+			<tab idQ="kolodka:helper"
+				 keytip="ё"
+				 label="Помощник ПКР">
+
+				<group idQ="kolodka:config">
+				
+					<menu idQ="kolodka:config_menu"
+						  imageMso="AddInManager"
+						  size="large"
+						  itemSize="large"
+						  label="Настройки"
+						  keytip="Ы">
+						  
+						<button id="btnContractsConfig"
+								image="clipboard--settings_50x50"
+								label="Доступные работы"
+								description="Каталоги экспорта на сервер"
+								onAction="ContractsConfig"/>
+					</menu>
+				</group>
+
+				<group idQ="kolodka:other"
+					   label="Дополнительно">
+
+					<separator id="separatorContracts"/> 
+					
+					<button id="btnContracts"
+							size="large"
+							image="clipboard--v4_small"
+							description="Перечень доступных к выполнению оплаченных работ"
+							label="Доступные работы"
+							keytip="E"
+							onAction="ContractsMain"/>
+
+				</group>
+			</tab>
+		</tabs>
+	</ribbon>
+</customUI>
